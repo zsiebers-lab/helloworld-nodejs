@@ -4,10 +4,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
-  stages {
-      triggers {
+  triggers {
     eventTrigger simpleMatch('hello-api-eli')
   }
+  stages {
     stage('Test') {
       agent {
         kubernetes {
