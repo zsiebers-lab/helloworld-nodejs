@@ -5,6 +5,9 @@ pipeline {
     skipDefaultCheckout true
   }
   stages {
+      triggers {
+    eventTrigger simpleMatch('hello-api-eli')
+  }
     stage('Test') {
       agent {
         kubernetes {
