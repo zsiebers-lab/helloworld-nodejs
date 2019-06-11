@@ -4,14 +4,17 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
   }
+  triggers {
+    eventTrigger simpleMatch('hello-api-eli')
+  }
   stages {
     stage('Test') {
- agent {
-    kubernetes {
-      label 'nodejs-app-pod'
-      yamlFile 'nodejs-pod.yaml'
-    }
-  }
+      agent {
+        kubernetes {
+          label 'nodejs-app-pod-2'
+          yamlFile 'nodejs-pod.yaml'
+        }
+      }
       steps {
         checkout scm
         container('nodejs') {
