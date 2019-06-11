@@ -1,7 +1,9 @@
 pipeline {
-  agent any
-  stages {
-    stage('Say Hello') {
+  agent none
+  stages { 
+    stage('Test') {
+          agent { label 'nodejs-app' }
+
       steps {
         echo 'Hello World!'   
         sh 'java -version'
